@@ -18,8 +18,23 @@
             <p subtitle>此页面仍在开发!</p>
             <p description>
                 此网页会在您的浏览器中带来几乎真实的 <a link href="https://apple.com.cn/mac">Mac(intosh)</a> 体验。<br />
-                登录密码可以使用下列密码的任选其一来登录: Ventura，Sonoma，Sequoia。那么点击继续按钮来享受丝滑的 Mac 体验吧！<br />
-                如果您需要类似 Mac 的 Boot Chime 自检通过音效，请在点击按钮后做一些与网页的交互来绕过自动播放限制。
+                登录密码可以使用下列密码的任选其一来登录: <br />
+                <div style="margin-left: 20px; margin-top: 10px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 8px; width: 200px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>Ventura</span>
+                        <button onclick="copyPassword(this, 'Ventura')" style="padding: 3px 10px; border: none; border-radius: 4px; background: rgba(255,255,255,0.3); color: black; cursor: pointer; font-size: 12px; transition: all 0.3s ease; min-width: 40px; text-align: center;">复制</button>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>Sonoma</span>
+                        <button onclick="copyPassword(this, 'Sonoma')" style="padding: 3px 10px; border: none; border-radius: 4px; background: rgba(255,255,255,0.3); color: black; cursor: pointer; font-size: 12px; transition: all 0.3s ease; min-width: 40px; text-align: center;">复制</button>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span>Sequoia</span>
+                        <button onclick="copyPassword(this, 'Sequoia')" style="padding: 3px 10px; border: none; border-radius: 4px; background: rgba(255,255,255,0.3); color: black; cursor: pointer; font-size: 12px; transition: all 0.3s ease; min-width: 40px; text-align: center;">复制</button>
+                    </div>
+                </div>
+                点击继续按钮来享受丝滑的 Mac 体验吧！<br />
+                如需 Mac 风格的 Boot Chime 自检通过音效，点击按钮后请与网页进行交互以绕过自动播放限制。
             </p>
             <div bottom-content>
                 <hr />
@@ -41,8 +56,25 @@
             }, 50);
         }
 
+        function copyPassword(button, password) {
+            navigator.clipboard.writeText(password).then(() => {
+                // 保存原始文本
+                const originalText = button.textContent;
+                // 更改按钮文本为√
+                button.textContent = '√';
+                // 添加动画效果
+                button.style.transform = 'scale(1.2)';
+                // 2秒后恢复原始状态
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.transform = 'scale(1)';
+                }, 2000);
+                console.log('密码已复制: ' + password);
+            });
+        }
+
         window.onload = () => {
-            document.getElementById('cursor').src = "assets/images/Cursor.svg";
+            // 移除 cursor 相关代码，因为页面中没有 cursor 元素
         };
     </script>
     <script type="module" src="src/js/ui.js"></script>

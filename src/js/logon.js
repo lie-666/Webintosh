@@ -48,7 +48,7 @@ function updateTime() {
     const minutes = currentTime.getMinutes().toString().padStart(2, '0');
 
     timeSvg.innerHTML = hours + ":" + minutes;
-    svg();
+    setTimeout(svg, 0); // 确保在DOM更新后重新计算位置
 }
 
 function updateDate() {
@@ -63,7 +63,7 @@ function updateDate() {
     month = month.toString();
 
     dateSvg.innerHTML = month + "月" + day + "日" + " " + weekDay;
-    svg();
+    setTimeout(svg, 0); // 确保在DOM更新后重新计算位置
 }
 
 function updateOpacity() {
@@ -115,7 +115,7 @@ async function toDesktop() {
     window.location = '/Webintosh-Desktop';
 }
 
-async function invalidPassword(value = "Ventura Sonoma Sequoia 选一个吧") {
+async function invalidPassword(value = "密码错误，请重新输入") {
     password.style.transform = 'translateX(-60px)';
     await sleep(60);
     password.style.transform = 'translateX(90px)';
